@@ -18,6 +18,14 @@ describe('the Mos Definition page', {:type => :feature}) do
     end
   end
 
+  describe('Add a Definition with a New Word path') do
+    it('creates a new word and definition which display on the word page') do
+      add_test_word_and_definition()
+      expect_the_word_on_the_page()
+      expect(page).to(have_content('procedure intended to establish the quality'))
+    end
+  end
+
   describe('Select a Word path') do
     it('shows the viewer a selected word from the list on the index page') do
       add_test_word()
@@ -35,8 +43,22 @@ def add_test_word
   click_button('Add')
 end
 
+def add_test_word_and_definition
+  visit('/')
+  click_link('+')
+  fill_in_test_word()
+  fill_in_test_definition()
+  click_button('Add')
+end
+
 def fill_in_test_word
   fill_in('word', :with => 'test')
+end
+
+def fill_in_test_definition
+  fill_in('definition', :with => 'a procedure intended to establish the quality, \
+                                  performance, or reliability of something, especially \
+                                  before it is taken into widespread use')
 end
 
 def click_home_button

@@ -16,16 +16,23 @@ end
 
 post('/words/success') do
   new_word = params[:word]
-  word = Word.new({:name => new_word})
-  word.save()
-  id = word.id()
-
   new_definition = params[:definition]
-  definition = Definition.new({:text => new_definition})
-  word.add_definition(definition)
+  if new_word.length() > 0
+    word = Word.new({:name => new_word})
+    word.save()
+    id = word.id()
 
-  message = 'Your word has been added!'
-  redirect("/words/#{id}?message=#{message}")
+    if new_definition.length() > 0
+      definition = Definition.new({:text => new_definition})
+      word.add_definition(definition)
+    end
+
+    message = 'Your word has been added!'
+    redirect("/words/#{id}?message=#{message}")
+  else
+    message = 'No word has been added!'
+    redirect("/#{id}?message=#{message}")
+  end
 end
 
 get('/words/:id') do
@@ -56,11 +63,16 @@ end
 post('/words/:id/success') do
   id = params[:id]
   word = Word.find(id)
-
   new_definition = params[:definition]
-  definition = Definition.new({:text => new_definition})
-  word.add_definition(definition)
 
-  message = 'Your definition has been added!'
+  if new_definition.length() > 0
+    definition = Definition.new({:text => new_definition})
+    word.add_definition(definition)
+
+    message = 'Your definition has been added!'
+  else
+    message = 'No definition has been added!'
+  end
+
   redirect("/words/#{id}?message=#{message}")
 end

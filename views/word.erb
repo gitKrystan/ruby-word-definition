@@ -15,12 +15,15 @@
   <% end %>
 </div>
 
+<a href="/">
+  <button class="btn btn-default" type="button">Go to Word List</button>
+</a>
 
 <form class="btn-group" action="/words/<%= @word.id() %>/change" method="post">
   <button type="submit" class="btn btn-default" name="option" value="add definition">
-    + Definition
+    Add Definition
   </button>
   <button type="submit" class="btn btn-default" name="option" value="remove word">
-    - Remove Word
+    Remove Word
   </button>
 </form>

@@ -38,7 +38,7 @@ describe('the Mos Definition page', {:type => :feature}) do
   describe('Add a New Definition path') do
     it('adds a new definition to an existing word') do
       add_test_word()
-      click_button('+ Definition')
+      click_button('Add Definition')
       fill_in_test_definition()
       click_button('Add')
       expect_the_definition_on_the_page()
@@ -50,7 +50,7 @@ describe('the Mos Definition page', {:type => :feature}) do
       add_test_word()
       click_home_button()
       click_test_word()
-      click_button('- Remove Word')
+      click_button('Remove Word')
       expect_the_word_to_be_removed()
     end
   end
@@ -58,14 +58,14 @@ end
 
 def add_test_word
   visit('/')
-  click_link('+')
+  click_link('Add Word')
   fill_in_test_word()
   click_button('Add')
 end
 
 def add_test_word_and_definition
   visit('/')
-  click_link('+')
+  click_link('Add Word')
   fill_in_test_word()
   fill_in_test_definition()
   click_button('Add')

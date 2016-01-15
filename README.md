@@ -10,7 +10,7 @@ To see this code in action, go to:
 
 `TODO: Add Heroku Link`
 
-This website allows a user to input words and their definitions. Each word can have multiple definitions.
+This website allows a user to input words and their definitions. Each word can have multiple definitions and can be removed from the word list.
 
 Words and definitions are stored as objects in Word and Definition classes.
 

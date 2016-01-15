@@ -1,12 +1,20 @@
-<!-- Create a link for each word -->
-<ul class="nav nav-pills nav-stacked">
-  <% @words.each() do |word| %>
-    <li>
-      <a href="/words/<%= word.id() %>">
-        <%= word.name() %>
-      </a>
-    </li>
+<div class="panel panel-default">
+  <div class="panel-body">
+    <!-- Create a link for each word -->
+    <ul class="nav nav-pills nav-stacked" id="word-list">
+      <% @words.each() do |word| %>
+        <li id="<%= word.id() %>">
+          <a href="/words/<%= word.id() %>">
+            <%= word.name() %>
+          </a>
+        </li>
+      <% end %>
+    </ul>
+  </div>
+
+  <% unless @message.nil? %>
+    <div class="panel-footer"> <%= @message %> </div>
   <% end %>
-</ul>
+</div>
 
 <a href="/words/new"><button type="button" class="btn btn-default">+</button></a>

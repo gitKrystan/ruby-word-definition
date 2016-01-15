@@ -38,4 +38,15 @@ class Word
       end
     end
   end
+
+  def self.remove(identification)
+    word_index = nil
+    @@words.each() do |word|
+      if word.id() == identification
+        word_index = @@words.index(word)
+        break
+      end
+    end
+    @@words.delete_at(word_index)
+  end
 end

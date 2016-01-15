@@ -66,6 +66,18 @@ describe(Word) do
       expect(Word.find(id_of_test_word)).to(eq(test_word))
     end
   end
+
+  describe('.remove') do
+    it('removes a word from the array of words') do
+      first_word = a_first_word()
+      first_word.save()
+      test_word = a_new_word()
+      test_word.save()
+      id_of_test_word = test_word.id()
+      Word.remove(id_of_test_word)
+      expect(Word.all()).to(eq([first_word]))
+    end
+  end
 end
 
 def a_new_word

@@ -6,6 +6,7 @@ require('./lib/definition')
 
 get('/') do
   @words = Word.all()
+  @message = params[:message]
   erb(:index)
 end
 
@@ -35,11 +36,21 @@ get('/words/:id') do
   erb(:word)
 end
 
-get('/words/:id/new') do
+post('/words/:id/change') do
   id = params[:id]
   @word = Word.find(id)
   @definitions = @word.definitions()
-  erb(:word_add_definition_form)
+
+  option = params[:option]
+  if option == "add definition"
+    erb(:word_add_definition_form)
+  elsif option == "remove word"
+    message = "The word '#{@word.name()}' has been removed!"
+    Word.remove(id)
+    redirect("?message=#{message}")
+  else
+    redirect('/')
+  end
 end
 
 post('/words/:id/success') do

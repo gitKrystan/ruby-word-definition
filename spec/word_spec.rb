@@ -24,8 +24,24 @@ describe(Word) do
     end
   end
 
+  describe('#save') do
+    it('adds a word to the array of saved words') do
+      test_word = a_new_word()
+      test_word.save()
+      expect(Word.all()).to(eq([test_word]))
+    end
+  end
+
   describe('.all') do
     it('is empty at first') do
+      expect(Word.all()).to(eq([]))
+    end
+  end
+
+  describe('.clear') do
+    it('empties out all fo the saved words') do
+      a_new_word().save()
+      Word.clear()
       expect(Word.all()).to(eq([]))
     end
   end

@@ -1,5 +1,6 @@
 require('rspec')
 require('word')
+require('definition')
 require('pry')
 
 describe(Word) do
@@ -29,6 +30,15 @@ describe(Word) do
       test_word = a_new_word()
       test_word.save()
       expect(Word.all()).to(eq([test_word]))
+    end
+  end
+
+  describe('#add_definition') do
+    it('adds a new definition to a word') do
+      test_word = a_new_word()
+      test_definition = a_new_definition()
+      test_word.add_definition(test_definition)
+      expect(test_word.definitions()).to(eq([test_definition]))
     end
   end
 
@@ -64,4 +74,10 @@ end
 
 def a_first_word
   Word.new({:name => 'first'})
+end
+
+def a_new_definition
+  Definition.new({:text => 'a procedure intended to establish the quality, \
+                            performance, or reliability of something, especially \
+                            before it is taken into widespread use'})
 end

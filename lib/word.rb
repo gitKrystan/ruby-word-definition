@@ -1,5 +1,5 @@
 class Word
-  attr_reader(:name, :id)
+  attr_reader(:name, :id, :definitions)
 
   @@last_id = 0
   @@words = []
@@ -7,6 +7,7 @@ class Word
   def initialize(arguments)
     @name = arguments[:name]
     @id = generate_id().to_s()
+    @definitions = []
   end
 
   def generate_id
@@ -15,6 +16,10 @@ class Word
 
   def save
     @@words << self
+  end
+
+  def add_definition(definition)
+    @definitions << definition
   end
 
   def self.clear

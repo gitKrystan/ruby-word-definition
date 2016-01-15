@@ -10,13 +10,16 @@ get('/') do
   erb(:index)
 end
 
+# Displays form to create a new word
 get('/words/new') do
   erb(:word_form)
 end
 
+# Creates new word/definition objects for fields that have been filled in.
 post('/words/success') do
   new_word = params[:word]
   new_definition = params[:definition]
+
   if new_word.length() > 0
     word = Word.new({:name => new_word})
     word.save()
@@ -35,6 +38,7 @@ post('/words/success') do
   end
 end
 
+# Displays information about a word
 get('/words/:id') do
   id = params[:id]
   @word = Word.find(id)
@@ -43,7 +47,9 @@ get('/words/:id') do
   erb(:word)
 end
 
-post('/words/:id/change') do
+# Gets input from the button group at the bottom of a word page and redirects to
+# appropriate page
+get('/words/:id/change') do
   id = params[:id]
   @word = Word.find(id)
   @definitions = @word.definitions()
@@ -60,6 +66,7 @@ post('/words/:id/change') do
   end
 end
 
+# Adds a new definition if one has been input
 post('/words/:id/success') do
   id = params[:id]
   word = Word.find(id)

@@ -1,1 +1,7 @@
+<ul class="nav nav-pills nav-stacked">
+  <% @words.each() do |word| %>
+    <li> <%= word.name() %> </li>
+  <% end %>
+</ul>
+
 <a href="/words/new"><button type="button" class="btn btn-default">+</button></a>

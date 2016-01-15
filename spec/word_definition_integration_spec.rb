@@ -12,6 +12,7 @@ describe('the Mos Definition page', {:type => :feature}) do
     it('creates a new word which displays on the success page \
         and in a list on the home page') do
       add_test_word()
+      click_home_button()
       expect_the_word_on_the_page()
       click_home_button()
       expect_the_word_on_the_page()
@@ -21,6 +22,8 @@ describe('the Mos Definition page', {:type => :feature}) do
   describe('Add a Definition with a New Word path') do
     it('creates a new word and definition which display on the word page') do
       add_test_word_and_definition()
+      click_home_button()
+      click_test_word()
       expect_the_word_on_the_page()
       expect_the_definition_on_the_page()
     end
@@ -38,9 +41,13 @@ describe('the Mos Definition page', {:type => :feature}) do
   describe('Add a New Definition path') do
     it('adds a new definition to an existing word') do
       add_test_word()
+      click_home_button()
+      click_test_word()
       click_edit_entry()
       fill_in_test_definition()
       click_button('Add')
+      click_home_button()
+      click_test_word()
       expect_the_definition_on_the_page()
     end
   end
@@ -51,6 +58,8 @@ describe('the Mos Definition page', {:type => :feature}) do
       click_home_button()
       click_test_word()
       click_button('Remove Word')
+      expect(page).to(have_content('removed'))
+      click_home_button()
       expect_the_word_to_be_removed()
     end
   end
@@ -119,7 +128,6 @@ def expect_the_word_to_be_removed
   within("ul#word-list") do
     expect(page).not_to(have_content('test'))
   end
-  expect(page).to(have_content('removed'))
 end
 
 def expect_the_definition_to_be_removed

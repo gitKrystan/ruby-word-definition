@@ -30,11 +30,11 @@ post('/words/success') do
       word.add_definition(definition)
     end
 
-    message = 'Your word has been added!'
-    redirect to("/words/#{id}?message=#{message}")
+    @message = 'Your word has been added!'
+    erb(:status)
   else
-    message = 'No word has been added!'
-    redirect to("/#{id}?message=#{message}")
+    @message = 'No word has been added!'
+    erb(:status)
   end
 end
 
@@ -58,9 +58,9 @@ get('/words/:id/change') do
   if option == "edit entry"
     erb(:word_add_definition_form)
   elsif option == "remove word"
-    message = "The word '#{@word.name()}' has been removed!"
+    @message = "The word '#{@word.name()}' has been removed!"
     Word.remove(id)
-    redirect to("?message=#{message}")
+    erb(:status)
   else
     redirect to('/')
   end
@@ -76,10 +76,10 @@ post('/words/:id/success') do
     definition = Definition.new({:text => new_definition})
     word.add_definition(definition)
 
-    message = 'Your definition has been added!'
+    @message = 'Your definition has been added!'
   else
-    message = 'No definition has been added!'
+    @message = 'No definition has been added!'
   end
 
-  redirect to("/words/#{id}?message=#{message}")
+  erb(:status)
 end

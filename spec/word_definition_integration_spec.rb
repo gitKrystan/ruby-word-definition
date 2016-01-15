@@ -22,7 +22,7 @@ describe('the Mos Definition page', {:type => :feature}) do
     it('creates a new word and definition which display on the word page') do
       add_test_word_and_definition()
       expect_the_word_on_the_page()
-      expect(page).to(have_content('procedure intended to establish the quality'))
+      expect_the_definition_on_the_page()
     end
   end
 
@@ -32,6 +32,16 @@ describe('the Mos Definition page', {:type => :feature}) do
       click_home_button()
       click_test_word()
       expect_the_word_on_the_page()
+    end
+  end
+
+  describe('Add a New Definition path') do
+    it('adds a new definition to an existing word') do
+      add_test_word()
+      click_link('+ Definition')
+      fill_in_test_definition()
+      click_button('Add')
+      expect_the_definition_on_the_page()
     end
   end
 end
@@ -71,4 +81,8 @@ end
 
 def expect_the_word_on_the_page
   expect(page).to(have_content('test'))
+end
+
+def expect_the_definition_on_the_page
+  expect(page).to(have_content('procedure intended to establish the quality'))
 end

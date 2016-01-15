@@ -14,3 +14,7 @@
     <div class="panel-footer"> <%= @message %> </div>
   <% end %>
 </div>
+
+<a href="/words/<%= @word.id() %>/new">
+  <button type="button" class="btn btn-default">+ Definition</button>
+</a>

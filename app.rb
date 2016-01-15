@@ -34,3 +34,22 @@ get('/words/:id') do
   @message = params[:message]
   erb(:word)
 end
+
+get('/words/:id/new') do
+  id = params[:id]
+  @word = Word.find(id)
+  @definitions = @word.definitions()
+  erb(:word_add_definition_form)
+end
+
+post('/words/:id/success') do
+  id = params[:id]
+  word = Word.find(id)
+
+  new_definition = params[:definition]
+  definition = Definition.new({:text => new_definition})
+  word.add_definition(definition)
+
+  message = 'Your definition has been added!'
+  redirect("/words/#{id}?message=#{message}")
+end

@@ -12,9 +12,9 @@ describe('the Mos Definition page', {:type => :feature}) do
     it('creates a new word which displays on the success page \
         and in a list on the home page') do
       add_test_word()
-      expect(page).to(have_content('test'))
+      expect_the_word_on_the_page()
       click_home_button()
-      expect(page).to(have_content('test'))
+      expect_the_word_on_the_page()
     end
   end
 end
@@ -32,4 +32,8 @@ end
 
 def click_home_button
   click_on('homeButton')
+end
+
+def expect_the_word_on_the_page
+  expect(page).to(have_content('test'))
 end

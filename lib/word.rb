@@ -2,6 +2,7 @@ class Word
   attr_reader(:name, :id)
 
   @@last_id = 0
+  @@words = []
 
   def initialize(arguments)
     @name = arguments[:name]
@@ -14,5 +15,9 @@ class Word
 
   def self.clear
     @@last_id = 0
+  end
+
+  def self.all
+    @@words
   end
 end

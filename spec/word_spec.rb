@@ -23,6 +23,12 @@ describe(Word) do
       expect(test_word.id()).to(eq('2'))
     end
   end
+
+  describe('.all') do
+    it('is empty at first') do
+      expect(Word.all()).to(eq([]))
+    end
+  end
 end
 
 def a_new_word

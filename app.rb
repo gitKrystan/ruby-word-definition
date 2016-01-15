@@ -14,9 +14,17 @@ get('/words/new') do
 end
 
 post('/words/success') do
-  @word = params[:word]
-  @message = 'Your word has been added!'
-  Word.new({:name => @word})
-    .save()
+  new_word = params[:word]
+  word = Word.new({:name => new_word})
+  word.save()
+  id = word.id()
+  message = 'Your word has been added!'
+  redirect("/words/#{id}?message=#{message}")
+end
+
+get('/words/:id') do
+  id = params[:id]
+  @word = Word.find(id)
+  @message = params[:message]
   erb(:word)
 end

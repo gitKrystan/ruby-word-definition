@@ -17,6 +17,15 @@ describe('the Mos Definition page', {:type => :feature}) do
       expect_the_word_on_the_page()
     end
   end
+
+  describe('Select a Word path') do
+    it('shows the viewer a selected word from the list on the index page') do
+      add_test_word()
+      click_home_button()
+      click_test_word()
+      expect_the_word_on_the_page()
+    end
+  end
 end
 
 def add_test_word
@@ -32,6 +41,10 @@ end
 
 def click_home_button
   click_on('homeButton')
+end
+
+def click_test_word
+  click_link('test')
 end
 
 def expect_the_word_on_the_page

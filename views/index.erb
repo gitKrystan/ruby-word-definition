@@ -1,6 +1,11 @@
+<!-- Create a link for each word -->
 <ul class="nav nav-pills nav-stacked">
   <% @words.each() do |word| %>
-    <li> <%= word.name() %> </li>
+    <li>
+      <a href="/words/<%= word.id() %>">
+        <%= word.name() %>
+      </a>
+    </li>
   <% end %>
 </ul>
 

@@ -1,11 +1,11 @@
 <div class="panel panel-default">
   <div class="panel-body">
     <dl class="dl-horizontal">
-      <dt> <%= @word %> </dt>
+      <dt> <%= @word.name() %> </dt>
     </dl>
   </div>
 
-  <% if @message.length() > 0 %>
+  <% unless @message.nil? %>
     <div class="panel-footer"> <%= @message %> </div>
   <% end %>
 </div>

@@ -38,7 +38,7 @@ describe('the Mos Definition page', {:type => :feature}) do
   describe('Add a New Definition path') do
     it('adds a new definition to an existing word') do
       add_test_word()
-      click_button('Add Definition')
+      click_edit_entry()
       fill_in_test_definition()
       click_button('Add')
       expect_the_definition_on_the_page()
@@ -52,6 +52,24 @@ describe('the Mos Definition page', {:type => :feature}) do
       click_test_word()
       click_button('Remove Word')
       expect_the_word_to_be_removed()
+    end
+  end
+
+  describe('Delete a Definition path') do
+    it('deletes a definition of the users choice') do
+      #TODO
+    end
+  end
+
+  describe('change a word entry path') do
+    it('allows users to change words and definition') do
+      #TODO
+    end
+  end
+
+  describe('specify definition type path') do
+    it('adds a definition type to an entry') do
+      #TODO: e.g. noun, verb, etc
     end
   end
 end
@@ -89,6 +107,10 @@ def click_test_word
   click_link('test')
 end
 
+def click_edit_entry
+  click_button('Edit Entry')
+end
+
 def expect_the_word_on_the_page
   expect(page).to(have_content('test'))
 end
@@ -98,6 +120,10 @@ def expect_the_word_to_be_removed
     expect(page).not_to(have_content('test'))
   end
   expect(page).to(have_content('removed'))
+end
+
+def expect_the_definition_to_be_removed
+  expect(page).not_to(have_content('procedure intended to establish the quality'))
 end
 
 def expect_the_definition_on_the_page

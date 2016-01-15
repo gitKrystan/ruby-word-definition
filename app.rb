@@ -5,7 +5,7 @@ require('./lib/word')
 require('./lib/definition')
 
 get('/') do
-  @words = Word.all()
+  @words = Word.all().sort_by { |word| word.name().downcase() }
   @message = params[:message]
   erb(:index)
 end
@@ -49,7 +49,7 @@ post('/words/:id/change') do
   @definitions = @word.definitions()
 
   option = params[:option]
-  if option == "add definition"
+  if option == "edit entry"
     erb(:word_add_definition_form)
   elsif option == "remove word"
     message = "The word '#{@word.name()}' has been removed!"

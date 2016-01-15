@@ -31,10 +31,10 @@ post('/words/success') do
     end
 
     message = 'Your word has been added!'
-    redirect("/words/#{id}?message=#{message}")
+    redirect to("/words/#{id}?message=#{message}")
   else
     message = 'No word has been added!'
-    redirect("/#{id}?message=#{message}")
+    redirect to("/#{id}?message=#{message}")
   end
 end
 
@@ -60,9 +60,9 @@ get('/words/:id/change') do
   elsif option == "remove word"
     message = "The word '#{@word.name()}' has been removed!"
     Word.remove(id)
-    redirect("?message=#{message}")
+    redirect to("?message=#{message}")
   else
-    redirect('/')
+    redirect to('/')
   end
 end
 
@@ -81,5 +81,5 @@ post('/words/:id/success') do
     message = 'No definition has been added!'
   end
 
-  redirect("/words/#{id}?message=#{message}")
+  redirect to("/words/#{id}?message=#{message}")
 end
